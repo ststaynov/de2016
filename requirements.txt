@@ -19,6 +19,7 @@ swapper==0.1.1
 tweepy==3.5.0
 twitter-monitor==0.3.0
 
+dj-database-url==0.4.1
 gunicorn==19.4.5
 whitenoise==3.0
 psycopg2==2.5.4
