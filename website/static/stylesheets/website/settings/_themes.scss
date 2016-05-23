@@ -1,0 +1,65 @@
+.theme-white {
+  background-color: $white;
+
+  .polygon-small, .polygon-medium {
+    polygon {
+      fill: $orange;
+    }
+  }
+
+  .middle-content {
+    background-color: $purple;
+  }
+
+  .c-page-title {
+    color: $orange;
+
+    .e-page-title {
+      border-top: 2px dashed $orange;
+    }
+  }
+}
+
+.theme-blue {
+  background-color: $blue;
+
+  .polygon-small, .polygon-medium {
+    polygon {
+      fill: $coral;
+    }
+  }
+
+  .middle-content {
+    background-color: $blue;
+  }
+
+  .c-page-title {
+    color: $coral;
+
+    .e-page-title {
+      border-top: 2px dashed $coral;
+    }
+  }
+}
+
+.theme-pink {
+  background-color: $pink;
+
+  .polygon-small, .polygon-medium {
+    polygon {
+      fill: $turquoise;
+    }
+  }
+
+  .middle-content {
+    background-color: $turquoise;
+  }
+
+  .c-page-title {
+    color: $purple;
+
+    .e-page-title {
+      border-top: 2px dashed $purple;
+    }
+  }
+}

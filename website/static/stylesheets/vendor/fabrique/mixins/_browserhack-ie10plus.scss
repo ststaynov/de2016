@@ -1,0 +1,7 @@
+
+@mixin browserhack-ie10plus() {
+  _:-ms-input-placeholder,
+  :root & {
+    @content;
+  }
+}

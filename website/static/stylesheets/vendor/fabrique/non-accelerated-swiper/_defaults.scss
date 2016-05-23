@@ -1,0 +1,40 @@
+.swiper-button-prev, .swiper-button-next {
+  position: absolute;
+  top: 50%;
+  width: 27px;
+  height: 44px;
+  margin-top: -22px;
+  z-index: 10;
+  cursor: pointer;
+  -moz-background-size: 27px 44px;
+  -webkit-background-size: 27px 44px;
+  background-size: 27px 44px;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.swiper-button-prev {
+  content: '>';
+  left: 10px;
+  right: auto;
+}
+.swiper-button-next {
+  content: '<';
+  right: 10px;
+  left: auto;
+}
+
+.swiper-container {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.swiper-wrapper {
+  position: absolute;
+}
+
+.swiper-slide {
+  float: left;
+  width: 100%;
+}

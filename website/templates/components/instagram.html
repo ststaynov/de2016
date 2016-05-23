@@ -1,0 +1,14 @@
+{% load de_tags %}
+
+<div class="instagram">
+    {% instagram_popular_media count=10 %}
+      {% for media in popular_media %}
+          {% if media.type = 'image' %}
+            <div id="media">
+              <a href="{{ media.link }}" target="_blank" title="{{ media.caption.text }}">
+                <img height="" src="{{ media.get_standard_resolution_url }}"/>
+              </a>
+            </div>
+          {% endif %}
+      {% endfor %}
+</div>

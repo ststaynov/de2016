@@ -1,0 +1,354 @@
+html,
+body,
+main {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  font-family: "Egyptienne Webfont";
+  font-weight: normal;
+  font-style: italic;
+}
+
+.container {
+  height: 100%;
+}
+
+main {
+  min-width: $beamer-screen-width;
+  min-height: $beamer-screen-height;
+
+  > div {
+    height: 100%;
+
+  }
+}
+
+svg {
+  max-width: 100%;
+  height: auto;
+}
+
+// columns
+
+.e-left-column {
+  @include side-column;
+  position: relative;
+}
+
+.left-column-container {
+  height: 100%;
+  width: calc(100% - 70px);
+  position: absolute;
+  top: 55px;
+  display: block;
+
+  &.move-in {
+    top: -100vh;
+  }
+}
+
+.e-middle-column {
+  @include column;
+  position: relative;
+  width: 50%;
+  padding: $padding-vertical 0;
+
+  @include below($breakpoint) {
+    padding: 50px 0;
+    width: 620px;
+  }
+
+  .middle-column-container {
+    height: 970px;
+    @include below($breakpoint) {
+      height: 670px;
+      width: 620px;
+    }
+
+    &.move-in {
+      position: absolute;
+      top: 100vh;
+    }
+
+    &.move-out {
+      position: absolute;
+    }
+  }
+
+}
+
+.e-right-column {
+  @include side-column;
+
+  @include below($breakpoint) {
+    position: absolute;
+    width: $column-right-width;
+    right: $padding-large;
+  }
+}
+
+.inner-container {
+  @include inner-container;
+
+  p {
+    padding-bottom: 12px;
+  }
+}
+
+// inner blocks
+
+.middle-content {
+  color: $white;
+  position: relative;
+  height: 100%;
+  -webkit-clip-path: polygon(83% 0, 100% 14%, 100% 86%, 18% 100%, 0 86%, 0 14%);
+  clip-path: polygon(83% 0, 100% 14%, 100% 86%, 18% 100%, 0 86%, 0 14%);
+
+  .inner-container {
+    @include inner-container-middle;
+  }
+}
+
+.polygon-large {
+  @include background;
+  max-width: 100%;
+  max-height: calc(100% - (#{$padding-large} * 2));
+}
+
+.polygon-medium {
+  @include background;
+}
+
+.polygon-small {
+  @include background;
+}
+
+// D&E 2016 logo
+
+.c-logo {
+  @include clearfix;
+  //height: $container-height-large;
+  width: $side-container-width;
+  max-width: 100%;
+  float: right;
+  padding-bottom: $padding-large;
+
+  svg {
+    path {
+      fill: $purple;
+    }
+  }
+
+  .e-logo {
+    width: 100%;
+    height: auto;
+  }
+
+  .e-title {
+    @include typography-h2;
+    padding-top: 15px;
+    color: $purple;
+    border-bottom: 2px dashed $purple;
+  }
+}
+
+// sponsor
+
+.c-sponsor {
+  height: $container-height-small;
+  width: $side-container-width;
+  max-width: 100%;
+  position: relative;
+  clear: right;
+  float: right;
+
+  .e-title {
+    @include typography-h3;
+    color: $white;
+  }
+}
+
+// page-title
+
+.c-page-title {
+  position: absolute;
+  left: -60px;
+  //bottom: -10px;
+  //right: -320px;
+  bottom: 100px;
+  color: $orange;
+  text-align: right;
+  z-index: 10;
+
+  @include below($breakpoint) {
+    bottom: 70px;
+  }
+
+  .e-page-title {
+    @include typography-h1;
+    border-top: 2px dashed $orange;
+  }
+
+  .e-page-subtitle {
+    @include typography-h2;
+  }
+}
+
+.message {
+  .c-page-title {
+    max-width: 25vw;
+    left: auto;
+    right: -160px;
+    bottom: 110px;
+
+    @include below($breakpoint) {
+      bottom: 75px;
+      right: -90px;
+    }
+  }
+
+  .c-message {
+    margin-top: 55px;
+  }
+
+  .e-room {
+    @include typography-h2;
+  }
+
+  .e-message {
+    @include typography-h3;
+  }
+}
+
+// timetable
+
+.c-timetable {
+
+  .e-current-events {
+    width: 40%;
+    height: 100%;
+    float: left;
+  }
+
+  .c-current-event {
+    .e-time {
+      font-size: 35px;
+    }
+
+    .e-title {
+      font-size: 28px;
+    }
+  }
+
+  .e-coming-events {
+    font-size: 20px;
+    line-height: 25px;
+    width: 60%;
+    float: left;
+    padding-left: $padding-large;
+  }
+
+  .c-coming-event {
+    border-bottom: 2px dashed $orange;
+    margin-bottom: $padding-large;
+
+    .e-title {
+      padding-bottom: $padding-large;
+    }
+
+    .e-author {
+      padding-bottom: $padding-large;
+    }
+  }
+}
+
+// right blocks
+.blocks-container {
+  position: absolute;
+  bottom: 55px;
+
+  &.move-in {
+    bottom: 110vh;
+  }
+}
+
+.c-right-block {
+  position: relative;
+  height: $container-height-medium;
+  width: $right-block-width;
+  color: $white;
+
+  .e-room {
+    font-size: 30px;
+  }
+
+  .e-title {
+    font-size: 20px;
+    line-height: 25px;
+  }
+}
+
+// social media styles
+
+.c-social-media-title {
+  @include typography-h2;
+  position: absolute;
+  color: $coral;
+  transform: rotate(-9.5deg);
+  z-index: 5;
+
+  &.v-instagram {
+    top: 50px;
+
+    @include below($breakpoint) {
+      top: 40px;
+    }
+  }
+
+  &.v-twitter {
+    top: -$padding-large;
+
+    @include below($breakpoint) {
+      top: -$padding;
+    }
+  }
+}
+
+.instagram {
+  //@include keyframes(fadeOut) {
+  //  from {
+  //    opacity: 0;
+  //  }
+  //  to {
+  //    opacity: 1;
+  //  }
+  //}
+  //
+  //@mixin animation--fadeIn() {
+  //  @include animation(fadeOut 0.7s ease-in);
+  //  @include animation-iteration-count(1);
+  //  @include animation-fill-mode(forwards);
+  //}
+
+  #media {
+    display: none;
+    opacity: 0;
+
+    img {
+      height: 970px;
+
+      @include below($breakpoint) {
+        height: 670px;
+      }
+    }
+  }
+
+  .is-shown {
+    //@include animation--fadeIn();
+    opacity: 1 !important;
+    display: inline-block !important;
+  }
+}

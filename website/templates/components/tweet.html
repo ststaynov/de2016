@@ -1,0 +1,30 @@
+<div class="c-right-block tweet new c-tweet" data-tweetid="{{ tweet.id }}">
+    <svg class="polygon-medium" width="311px" height="297px" viewBox="0 0 311 297" version="1.1"
+         xmlns="http://www.w3.org/2000/svg"
+         xmlns:xlink="http://www.w3.org/1999/xlink">
+        <!-- Generator: Sketch 3.7.1 (28215) - http://www.bohemiancoding.com/sketch -->
+        <desc>Created with Sketch.</desc>
+        <defs>
+            <polygon id="path-1"
+                     points="54.0554507 2.22044605e-16 0 45.3082 0.310245504 251.718212 256.254795 296.799612 310.310246 251.490712 310 45.0807 56.933484 0.5075"></polygon>
+        </defs>
+        <mask id="mask-2" fill="white">
+            <use xlink:href="#path-1"></use>
+        </mask>
+        <use id="Path-Copy-11" stroke="none" fill="#EF4F4F" fill-rule="evenodd"
+             transform="translate(155.155123, 148.399806) scale(-1, 1) translate(-155.155123, -148.399806) "
+             xlink:href="#path-1"></use>
+    </svg>
+    <div class="inner-container">
+        <h3 class="e-twitter-name">{{ tweet.user.name }}</h3>
+        <h4 class="e-twitter-info">@{{ tweet.user.screen_name }}</h4>
+        <p class="e-twitter-text">{{ tweet.text }}</p>
+        {#            <p class="e-twitter-info">{{ tweet.created_at }}</p>#}
+        {#                {% if tweet.entities.media %}#}
+        {#                    <p class="e-twitter-media">{{ tweet.entities.media.0.media_url }}</p>#}
+        {#                {% endif %}#}
+    </div>
+</div>
+</div>
+
+

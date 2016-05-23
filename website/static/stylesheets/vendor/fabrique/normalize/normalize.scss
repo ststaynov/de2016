@@ -1,0 +1,67 @@
+
+:root {
+  overflow-y: auto;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-width: 320px;
+  margin: 0;
+}
+
+picture {
+  @include clearfix;
+
+  display: block;
+}
+
+img {
+  max-width: 100%;
+  vertical-align: bottom;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  font: inherit;
+
+  strong,
+  em {
+    font-style: inherit;
+    font-weight: inherit;
+  }
+
+  p > & {
+    text-decoration: underline;
+  }
+
+  span > & {
+    text-decoration: underline;
+  }
+
+  img {
+    vertical-align: bottom;
+  }
+}
+
+// NOTE: This is a test -EKL
+figure,
+picture {
+  img,
+  iframe,
+  video,
+  object {
+    width: 100%;
+    height: auto;
+  }
+}

@@ -1,0 +1,6 @@
+node_modules/
+skigrade_env/
+local_settings.py
+__pycache__
+*.pyc
+db.sqlite3

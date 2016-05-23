@@ -1,0 +1,121 @@
+{% load staticfiles %}
+
+<!doctype html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="{% static "css/website/main.css" %}" type="text/css"/>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.0/TweenMax.min.js"></script>
+</head>
+
+<body class="{% block body-class %}{% endblock body-class %}">
+<main>
+<div class="container {% block container-style %}{% endblock %}">
+    <div class="e-left-column">
+        <div class="left-column-container move-out">
+            <section class="c-logo">
+                {#            <div class="inner-container">#}
+                <svg width="268px" height="303px" viewBox="174 58 268 303" version="1.1"
+                     xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                    <!-- Generator: Sketch 3.7.1 (28215) - http://www.bohemiancoding.com/sketch -->
+                    <desc>Created with Sketch.</desc>
+                    <defs></defs>
+                    <path d="M220.613336,58 L174,97.094504 L174,321.101192 L392.224836,359.5621 L394.707238,360 L441.320574,320.904892 L441.320574,96.898204 L223.095134,58.4379 L220.613336,58 Z M398.569224,132.75406 L191.758727,96.30568 L223.700024,69.515864 L430.51052,105.964848 L430.51052,311.946968 L234.510682,277.403604 L266.451978,250.613788 L398.569224,273.898592 L398.569224,132.75406 Z M184.810054,312.034548 L184.810054,106.052428 L380.809892,140.596396 L348.867992,167.386212 L216.75135,144.101408 L216.75135,285.245336 L423.561847,321.693716 L391.619946,348.484136 L184.810054,312.034548 Z M355.817269,255.392032 L355.817269,175.662824 L387.759169,148.873612 L387.759169,261.021312 L355.817269,255.392032 Z M227.561405,156.978084 L259.503305,162.607968 L259.503305,242.337176 L227.561405,269.126388 L227.561405,156.978084 Z M270.313359,240.322836 L270.313359,164.512984 L345.00661,177.677164 L345.00661,253.487016 L270.313359,240.322836 Z"
+                          id="DE-logo" stroke="none" fill="#3B2790" fill-rule="evenodd"></path>
+                </svg>
+                <h2 class="e-title">D&E 2016</h2>
+                {#            </div>#}
+            </section>
+            <section class="c-sponsor">
+                <svg class="polygon-small" width="268px" height="219px" viewBox="0 0 268 219" version="1.1"
+                     xmlns="http://www.w3.org/2000/svg"
+                     xmlns:xlink="http://www.w3.org/1999/xlink">
+                    <!-- Generator: Sketch 3.7.1 (28215) - http://www.bohemiancoding.com/sketch -->
+                    <desc>Created with Sketch.</desc>
+                    <defs></defs>
+                    <polygon id="DE-logo-Copy" stroke="none" fill="#F4861D" fill-rule="evenodd"
+                             points="46.6133359 0 0 39.094504 0 180.101192 220.707238 219 267.320574 179.904892 267.320574 38.898204 49.0951343 0.4379"></polygon>
+                </svg>
+                <a href="" id="refresh">get tweets</a>
+                <a href="" id="btn-socialmedia-page" style="position: fixed; top: 0;left: 15%;z-index: 10;">get
+                    socialmedia</a>
+                <a href="" id="btn-programma-page" style="position: fixed; top: 0;left: 30%;z-index: 10;">get programma</a>
+                <a href="" id="btn-message-page" style="position: fixed; top: 0;left: 50%;z-index: 10;">get message</a>
+                <div class="inner-container">
+                    <h3 class="e-title">Powered by</h3>
+                    <figure class="e-logo-wrapper">
+                        <img src="../static/media/logo_fab.svg">
+                    </figure>
+                </div>
+            </section>
+        </div>
+    </div>
+    <div class="e-middle-column">
+
+        <div class="middle-column-container move-out">
+            {% block middle-column-title %}
+            {% endblock %}
+
+            <div class="middle-content">
+                <div class="inner-container">
+
+                    {% block middle-content %}
+                    {% endblock %}
+
+                </div>
+            </div>
+        </div>
+{#        <section class="c-page-title">#}
+{##}
+{#            <h2 class="e-page-subtitle">#}
+{#                {% block page-subtitle %}#}
+{#                {% endblock page-subtitle %}#}
+{#            </h2>#}
+{#            <h1 class="e-page-title">#}
+{#                {% block page-title %}#}
+{#                {% endblock page-title %}#}
+{#            </h1>#}
+{#        </section>#}
+    </div>
+    <div class="e-right-column">
+        <div class="blocks-container move-out">
+
+            {% block right-column-title %}
+            {% endblock %}
+
+            {% block right-column-content %}
+            {% endblock %}
+        </div>
+    </div>
+
+    {#    old side column #}
+
+    {#    <div class="e-side-column">#}
+    {#        <section class="c-instagram">#}
+    {#            <h2 class="e-title">#de2016</h2>#}
+    {#        </section>#}
+    {#        <section class="c-twitter">#}
+    {#            <svg class="polygon-medium" width="311px" height="305px" viewBox="0 -1 311 305" version="1.1" xmlns="http://www.w3.org/2000/svg"#}
+    {#                 xmlns:xlink="http://www.w3.org/1999/xlink">#}
+    {#                <!-- Generator: Sketch 3.7.1 (28215) - http://www.bohemiancoding.com/sketch -->#}
+    {#                <desc>Created with Sketch.</desc>#}
+    {#                <defs></defs>#}
+    {#                <polygon id="Path-Copy-11" stroke="none" fill="#F4861D" fill-rule="evenodd"#}
+    {#                         points="54.0554507 0 0 45.3082 0.310245504 258.718212 256.254795 303.799612 310.310246 258.490712 310 45.0807 56.933484 0.5075"></polygon>#}
+    {#            </svg>#}
+    {#            <section class="c-tweets">#}
+    {#                <section class="static-tweets"></section>#}
+    {#            </section>#}
+    {#        </section>#}
+    {#    </div>#}
+  </div>
+</main>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+{#    <script src="{% static "js/jquery.js" %}"></script>#}
+<script src="{% static "js/main.js" %}"></script>
+</body>
+</html>

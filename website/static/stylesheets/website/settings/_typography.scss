@@ -1,0 +1,38 @@
+// Fonts
+@font-face {
+  font-family: 'Egyptienne Webfont';
+  font-style: normal;
+  font-weight: normal;
+  src: url('/static/fonts/EgyptienneFLTStd-Roman.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'Egyptienne Webfont';
+  font-style: italic;
+  font-weight: normal;
+  src: url('/static/fonts/EgyptienneFLTStd-Italic.otf') format('opentype');
+}
+
+@mixin typography-h1 {
+  font-size: 80px;
+
+  @include below($breakpoint) {
+    font-size: 55px;
+  }
+}
+
+@mixin typography-h2 {
+  font-size: 45px;
+
+  @include below($breakpoint) {
+    font-size: 30px;
+  }
+}
+
+@mixin typography-h3 {
+  font-size: 30px;
+
+  @include below($breakpoint) {
+    font-size: 20px;
+  }
+}

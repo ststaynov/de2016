@@ -1,0 +1,82 @@
+.c-tweet {
+  position: relative;
+}
+
+.e-twitter-media {
+  color: $blue;
+}
+
+#refresh { // temporary for testing
+  position: fixed;
+  top: 0px;
+  left: 20px;
+}
+
+//added
+.c-twitter {
+  position: relative;
+  overflow: hidden;
+  //height: 929px;
+
+  @include below($breakpoint) {
+    height: $container-height-medium + 40px;
+  }
+
+  div.tweet {
+    .inner {
+      background: pink; //$white;
+      width: 200px;
+      min-height: 100%;
+    }
+    opacity: 1;
+    &.byebye {
+      opacity: 0;
+      position: absolute;
+      z-index: 20;
+    }
+    //min-height: 140px; // TODO make dynamic later on and calculate in js
+
+    @include below($breakpoint) {
+      margin-bottom: 40px;
+    }
+  }
+
+  &.initialized { // dynamics in here!
+
+    div.tweet {
+      @include transform(translateY(0%));
+      //@include transition(transform, 1000ms, opacity, 2000ms);
+      @include transition(opacity 2000ms);
+      //&.new:first-child {
+      &.new {
+        // the first child is actually only for init loading
+        width: 100%;
+        position: absolute;
+        //@include transform(translateY(-100%));
+        @include transform(translateY(0%)); // end state of new tweet
+      }
+    }
+
+    .static-tweets { //base
+      @include transform(translateY(0%));
+      @include transition(transform, 1000ms);
+    }
+
+    &.incoming {
+      .static-tweets { // move the static container with old tweets
+        // this translate is set in javascript, because dynamic new tweet height!
+      }
+      div.tweet.new { // the new tweet, appear start state
+        @include transform(translateY(0%));
+      }
+    }
+
+    &.incoming-disabling {
+      .static-tweets {
+        @include transition(transform, 0ms);
+      }
+    }
+
+  }
+
+}

@@ -1,0 +1,22 @@
+# this is the top-most EditorConfig file
+root = true
+
+# all files
+[*]
+# unix-style newlines
+end_of_line = lf
+# trim trailing whitespace
+trim_trailing_whitespace = true
+# insert a newline ending
+insert_final_newline = true
+# use utf-8 encoding
+charset = utf-8
+# indent with spaces, not tab
+indent_style = space
+# indent with 2 spaces
+indent_size = 2
+
+# python files
+[*.py]
+# indent with 4 spaces
+indent_size = 4

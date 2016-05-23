@@ -1,0 +1,21 @@
+
+@include keyframes(fade-out-to-left) {
+  0% {
+    @include transform(translateX(0));
+
+    display: block;
+    opacity: 1;
+  }
+
+  99% {
+    @include transform(translateX(-20px));
+
+    display: block;
+    opacity: 0;
+  }
+
+  100% {
+    display: none;
+    opacity: 0;
+  }
+}

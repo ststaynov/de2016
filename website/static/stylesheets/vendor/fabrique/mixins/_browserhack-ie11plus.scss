@@ -1,0 +1,7 @@
+
+@mixin browserhack-ie11plus() {
+  _:-ms-fullscreen,
+  :root & {
+    @content;
+  }
+}

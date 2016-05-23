@@ -1,0 +1,83 @@
+// Variables
+$hd-screen-width: 1920px;
+$hd-screen-height: 1080px;
+
+$beamer-screen-width: 1042px;
+$beamer-screen-height: 768px;
+
+$breakpoint: 1500px;
+
+$padding-vertical: 55px;
+$padding-large: 35px;
+$padding: 20px;
+$margin: 0 12px;
+
+$container-padding: $padding-large $padding-large 0 $padding-large;
+$inner-container-padding: 45px $padding $padding $padding;
+
+$main-logo-height: 180px;
+$main-title-height: 89px;
+$title-height: 57px;
+
+$right-block-width: 280px;
+$column-right-width: 280px + $padding-large*2;
+$side-container-width: 270px;
+
+$container-height-small: 225px;
+$container-height-medium: 270px;
+$container-height-large: 435px;
+$container-height-extra-large: 100%;
+
+// Mixins
+
+@mixin below($width) {
+  @media screen and (max-width: $width - 1) {
+    @content;
+  }
+}
+
+@mixin above($width) {
+  @media screen and (min-width: $width) {
+    @content;
+  }
+}
+
+@mixin column {
+  display: inline-block;
+  height: 100%;
+  float: left;
+}
+
+@mixin side-column {
+  @include column;
+  padding: $padding-vertical $padding-large;
+  width: 25%;
+}
+
+@mixin inner-container {
+  padding: $inner-container-padding;
+  position: relative;
+
+  //@include below($breakpoint) {
+  //  padding: $padding-large $padding;
+  //}
+}
+
+@mixin inner-container-middle {
+  padding: 200px 50px 50px 50px;
+
+  @include below($breakpoint) {
+    padding: 100px 50px 50px 50px;
+  }
+}
+
+@mixin center {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@mixin background {
+  position: absolute;
+}
