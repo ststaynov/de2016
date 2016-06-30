@@ -25,14 +25,14 @@
       var removed = $('.c-twitter div.tweet:first').remove();
       //removed.addClass('byebye');
       $('.c-twitter').prepend(removed);
-      $('.static-tweets').css({'transform':'translateY('+elementHeight+'px'});
+      $('.static-tweets').css({'transform': 'translateY(' + elementHeight + 'px'});
 
-      setTimeout(function() {
+      setTimeout(function () {
         $('.c-twitter div.tweet:first').addClass('byebye');
         $('.c-twitter').removeClass('incoming-disabling'); // kill transition temporarily
-        $('.static-tweets').css({'transform':'translateY(0px'});
-      },10)
-    },10);
+        $('.static-tweets').css({'transform': 'translateY(0px)'});
+      }, 10)
+    }, 10);
 
 
     setTimeout(function () {
@@ -94,7 +94,7 @@
       if ($.inArray(tweet.id, currentTweets) == -1) {
         // add it at the bottom
         if (visibleTweets < maximumTweets) {
-          if($('.blocks-container.move-in')[0]) { // checks if new container exists and if yes pushes new tweets to it
+          if ($('.blocks-container.move-in')[0]) { // checks if new container exists and if yes pushes new tweets to it
             console.log('putting tweets in new container');
             $('.blocks-container.move-in .c-twitter .c-tweets .static-tweets').append(tweet.content);
           } else {
@@ -152,25 +152,28 @@
 
   $('body').on('click', '#btn-programma-page', function (e) {
     clearInterval(refreshIntervalId); //refresh Instagram Interval
+    clearInterval(eventContainerLoop); //refresh eventContainer Interval for small resolution
     e.preventDefault();
     get_programme();
   });
 
   $('body').on('click', '#btn-message-page', function (e) {
     clearInterval(refreshIntervalId); //refresh Instagram Interval
+    clearInterval(eventContainerLoop); //refresh eventContainer Interval for small resolution
     e.preventDefault();
     get_message();
   });
 
   $('body').on('click', '#btn-socialmedia-page', function (e) {
     clearInterval(refreshIntervalId); //refresh Instagram Interval
+    clearInterval(eventContainerLoop); //refresh eventContainer Interval for small resolution
     e.preventDefault();
     get_social_media();
   });
 
+  // get_tweets(true);
+
   get_tweets(true);
-
-
   function get_tweets(init) {
 
     $.ajax({
@@ -214,12 +217,12 @@
     });
   }
 
-  function use_instagram_feed(){
+  function use_instagram_feed() {
     var $divs = $('div#media');
     var count = 1;
 
     $divs.eq(0).addClass('is-shown');
-    refreshIntervalId = setInterval(function() {
+    refreshIntervalId = setInterval(function () {
       $divs.eq(count - 1).removeClass('is-shown');
       if (count == 10) {
         $divs.eq(9).addClass('is-shown');
@@ -233,10 +236,12 @@
         $divs.eq(count).addClass('is-shown');
       }
       count++;
-    }, 4000)}
+    }, 4000)
+  }
 
 
-var pageType = '';
+  var pageType = '',
+    pageName = '';
 
   function get_programme() {
     $.ajax({
@@ -245,14 +250,15 @@ var pageType = '';
         console.log('error');
       },
       type: "GET",
-      success: function(data) {
+      success: function (data) {
         pageType = 'programme theme-white';
-        split_columns(data, pageType);
+        pageName = 'programme';
+        split_columns(data, pageType, pageName);
       }
     });
   }
 
-  function get_social_media(){
+  function get_social_media() {
     $.ajax({
       url: '/socialmedia/',
       error: function () {
@@ -261,7 +267,8 @@ var pageType = '';
       type: "GET",
       success: function (data) {
         pageType = 'socialmedia theme-blue';
-        split_columns(data, pageType);
+        pageName = 'socialmedia';
+        split_columns(data, pageType, pageName);
       }
     });
   }
@@ -275,14 +282,15 @@ var pageType = '';
       type: "GET",
       success: function (data) {
         pageType = 'message theme-pink';
-        split_columns(data, pageType);
+        pageName = 'message';
+        split_columns(data, pageType, pageName);
       }
     });
   }
 
 
   /* Animating left column START */
-  function split_columns(data, pageType) {
+  function split_columns(data, pageType, pageName) {
     var $loadedleftNew = $('.left-column-container', $(data)),
       $loadedleftOld = $('.left-column-container.move-out'),
       $leftContainerHolder = $('.left-column-container').parent(),
@@ -293,12 +301,9 @@ var pageType = '';
       $loadedRightNew = $('.blocks-container', $(data)),
       $loadedRightOld = $('.blocks-container.move-out');
 
-    $loadedleftNew.addClass('move-in');
-    $loadedmiddleNew.addClass('move-in');
-    $loadedRightNew.addClass('move-in');
-    // console.log($loadedleftNew);
-    // console.log($loadedmiddleNew);
-    // console.log($loadedRightNew);
+    $loadedleftNew.addClass('move-in v-' + pageName);
+    $loadedmiddleNew.addClass('move-in v-' + pageName);
+    $loadedRightNew.addClass('move-in v-' + pageName);
 
     $leftContainerHolder.prepend($loadedleftNew);
     $middleContainerHolder.prepend($loadedmiddleNew);
@@ -310,7 +315,7 @@ var pageType = '';
       get_tweets(true);
     }
 
-    setTimeout(function() {
+    setTimeout(function () {
       loadTheme(pageType);
       animateColumns($loadedleftNew, $loadedleftOld, $loadedmiddleNew, $loadedmiddleOld, $loadedRightNew, $loadedRightOld);
     }, 2000);
@@ -329,7 +334,7 @@ var pageType = '';
 
   function finishedAnimating() {
     var $toRemove = [$('.left-column-container.move-out'), $('.middle-column-container.move-out'), $('.blocks-container.move-out')],// , $('.blocks-container.move-out')
-        $toUpdate = [$('.left-column-container.move-in'), $('.middle-column-container.move-in'), $('.blocks-container.move-in')]; //, $('.blocks-container.move-in')
+      $toUpdate = [$('.left-column-container.move-in'), $('.middle-column-container.move-in'), $('.blocks-container.move-in')]; //, $('.blocks-container.move-in')
 
     $.each($toRemove, function (val) {
       $(this).remove();
@@ -345,15 +350,17 @@ var pageType = '';
 
   function loadTheme(pageType) {
     var $currentTheme = $('#type');
-    switch(pageType) {
+
+    switch (pageType) {
       case 'programme theme-white':
-        TweenMax.to($currentTheme, 2.8, {backgroundColor: '#FFF' , clearProps: "all", onStart: setClasses});
+        startEventContainerLoop();
+        TweenMax.to($currentTheme, 2.8, {backgroundColor: '#FFF', clearProps: "all", onStart: setClasses});
         break;
       case 'socialmedia theme-blue':
-        TweenMax.to($currentTheme, 2.8, {backgroundColor: '#B6D8F6' , clearProps: "all", onStart: setClasses});
+        TweenMax.to($currentTheme, 2.8, {backgroundColor: '#B6D8F6', clearProps: "all", onStart: setClasses});
         break;
       case 'message theme-pink':
-        TweenMax.to($currentTheme, 2.8, {backgroundColor: '#F4B3D6' , clearProps: "all", onStart: setClasses});
+        TweenMax.to($currentTheme, 2.8, {backgroundColor: '#F4B3D6', clearProps: "all", onStart: setClasses});
         break;
     }
 
@@ -361,7 +368,127 @@ var pageType = '';
       $currentTheme.removeClass();
       $currentTheme.addClass(pageType);
     }
+
   }
 
-})();
-/* Animating left column END */
+  /* Animating left column END */
+
+  /* Redrawing function for SVG color bug START */
+
+  $.fn.redraw = function () {
+    $(this).each(function () {
+      var redraw = this.offsetHeight;
+    });
+  };
+  /* Redrawing function END */
+
+  /* EventContainerLoop START */
+  var eventContainerLoop;
+
+  function startEventContainerLoop() {
+    var $eventsContainer = $('.e-coming-events'),
+      $navigationContainer = $('.c-events-navigation');
+
+
+    eventContainerLoop = setInterval(function () {
+      changeEventsContainerClass()
+    }, baseAnimation.programmeEventsTiming + '000');
+
+    function changeEventsContainerClass() {
+      if ($eventsContainer.hasClass('first')) {
+        $eventsContainer.removeClass('first');
+        $navigationContainer.removeClass('first');
+
+        $eventsContainer.addClass('second');
+        $navigationContainer.addClass('second');
+      } else if ($eventsContainer.hasClass('second')) {
+        $eventsContainer.removeClass('second');
+        $navigationContainer.removeClass('second');
+
+        $eventsContainer.addClass('third');
+        $navigationContainer.addClass('third');
+      } else if ($eventsContainer.hasClass('third')) {
+        $eventsContainer.removeClass('third');
+        $navigationContainer.removeClass('third');
+
+        $eventsContainer.addClass('fourth');
+        $navigationContainer.addClass('fourth');
+      } else if ($eventsContainer.hasClass('fourth')) {
+        $eventsContainer.removeClass('fourth');
+        $navigationContainer.removeClass('fourth');
+
+        $eventsContainer.addClass('first');
+        $navigationContainer.addClass('first');
+      } else {
+        $eventsContainer.addClass('first');
+        $navigationContainer.addClass('first');
+      }
+    }
+  }
+
+  /* EventContainerLoop END */
+
+
+  window.startPageAnimation = function startPageAnimation(programmeEventsTiming, pageMessageScreenTime, pageSocialScreenTime, pageProgrammeScreenTime) {
+    var currentPage = $('#type');
+
+    startPageAnimationLoop();
+    function startPageAnimationLoop() {
+      if (currentPage.hasClass('socialmedia')) {
+        if (!messagePageExists()) {
+          // clearInterval(refreshIntervalId); //refresh Instagram Interval
+          clearInterval(eventContainerLoop); //refresh eventContainer Interval for small resolution
+          get_programme();
+          setTimeout(function () {
+            startPageAnimationLoop();
+          }, (pageProgrammeScreenTime * '1000') + 3000); //make things into seconds and add the animation time
+        } else {
+          // clearInterval(refreshIntervalId); //refresh Instagram Interval
+          clearInterval(eventContainerLoop); //refresh eventContainer Interval for small resolution
+          get_message();
+          setTimeout(function () {
+            startPageAnimationLoop();
+          }, (pageMessageScreenTime * '1000') + 3000); //make things into seconds and add the animation time
+        }
+      } else if (currentPage.hasClass('programme')) {
+        if (!messagePageExists()) {
+          // clearInterval(refreshIntervalId); //refresh Instagram Interval
+          clearInterval(eventContainerLoop); //refresh eventContainer Interval for small resolution
+          get_social_media();
+
+          var tweetLoop;
+          console.log('Go to Social Media page');
+          setTimeout(function () {
+            get_tweets(true);
+            console.log('Get the tweets now');
+            tweetLoop = setInterval(function () {
+              get_tweets(false);
+              console.log('Getting tweets each second');
+            }, 2000); //Check for new tweets every second
+          }, 3000);
+
+          setTimeout(function () {
+            clearInterval(tweetLoop); //Clears the tweet interval
+            startPageAnimationLoop();
+          }, (pageSocialScreenTime * '1000') + 3000); //make things into seconds and add the animation time
+        } else {
+          // clearInterval(refreshIntervalId); //refresh Instagram Interval
+          clearInterval(eventContainerLoop); //refresh eventContainer Interval for small resolution
+          get_message();
+          setTimeout(function () {
+            startPageAnimationLoop();
+          }, (pageMessageScreenTime * '1000') + 3000); //make things into seconds and add the animation time
+        }
+      }
+    }
+
+    function messagePageExists() {
+      if ($('.message-page-exists').length > 0) return true;
+      else return false;
+    }
+  }
+
+})(window);
+
+
+

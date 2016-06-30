@@ -77,7 +77,6 @@ svg {
       position: absolute;
     }
   }
-
 }
 
 .e-right-column {
@@ -122,10 +121,6 @@ svg {
   @include background;
 }
 
-.polygon-small {
-  @include background;
-}
-
 // D&E 2016 logo
 
 .c-logo {
@@ -165,9 +160,16 @@ svg {
   clear: right;
   float: right;
 
+  @include below($breakpoint) {
+    .inner-container {
+      padding-top: 0;
+      padding-left: 0;
+    }
+  }
+
   .e-title {
     @include typography-h3;
-    color: $white;
+    color: $purple;
   }
 }
 
@@ -175,40 +177,34 @@ svg {
 
 .c-page-title {
   position: absolute;
-  left: -60px;
+  left: -205px;
   //bottom: -10px;
   //right: -320px;
   bottom: 100px;
-  color: $orange;
   text-align: right;
   z-index: 10;
 
   @include below($breakpoint) {
     bottom: 70px;
+    left: -140px;
   }
 
   .e-page-title {
     @include typography-h1;
-    border-top: 2px dashed $orange;
   }
 
   .e-page-subtitle {
-    @include typography-h2;
+    font-size: 45px;
+    line-height: 41px;
+
+    @include below($breakpoint) {
+      font-size: 26px;
+      line-height: 30px;
+    }
   }
 }
 
 .message {
-  .c-page-title {
-    max-width: 25vw;
-    left: auto;
-    right: -160px;
-    bottom: 110px;
-
-    @include below($breakpoint) {
-      bottom: 75px;
-      right: -90px;
-    }
-  }
 
   .c-message {
     margin-top: 55px;
@@ -234,12 +230,22 @@ svg {
   }
 
   .c-current-event {
-    .e-time {
-      font-size: 35px;
+    .e-title {
+      padding-bottom: 75px;
+      font-size: 36px;
+      line-height: 40px;
+      font-weight: bold;
     }
 
-    .e-title {
-      font-size: 28px;
+    .e-room {
+      font-size: 26px;
+      line-height: 25px;
+      font-weight: bold;
+    }
+
+    .e-session-type {
+      font-size: 20px;
+      line-height: 25px;
     }
   }
 
@@ -252,8 +258,12 @@ svg {
   }
 
   .c-coming-event {
-    border-bottom: 2px dashed $orange;
+    border-bottom: 2px dashed $dark-pink;
     margin-bottom: $padding-large;
+
+    &:nth-of-type(1n + 3) {
+      display: none;
+    }
 
     .e-title {
       padding-bottom: $padding-large;
@@ -261,6 +271,89 @@ svg {
 
     .e-author {
       padding-bottom: $padding-large;
+    }
+  }
+  @include below($breakpoint) {
+
+    .e-current-events {
+      width: 30%;
+    }
+
+    .c-coming-event {
+      padding-top: 55px;
+      display: block !important;
+    }
+    .c-current-event {
+      padding-top: 55px;
+
+      .e-title {
+        display: none;
+      }
+
+      .e-room {
+        font-size: 18px;
+        line-height: 21px;
+        font-weight: normal;
+      }
+
+      .e-session-type {
+        font-size: 18px;
+      }
+    }
+    .e-coming-events {
+      width: 70%;
+      float: right;
+
+      &.first {
+        .c-coming-event {
+          &:nth-of-type(1) {
+            opacity: 1;
+          }
+        }
+      }
+
+      &.second {
+        .c-coming-event {
+          &:nth-of-type(2) {
+            opacity: 1;
+          }
+        }
+      }
+
+      &.third {
+        .c-coming-event {
+          &:nth-of-type(3) {
+            opacity: 1;
+          }
+        }
+      }
+
+      &.fourth {
+        .c-coming-event {
+          display: block;
+          &:nth-of-type(4) {
+            opacity: 1;
+          }
+        }
+      }
+    }
+
+    .c-coming-event {
+      position: absolute;
+      display: inline-block;
+      border-bottom: none;
+      opacity: 0;
+      padding-right: 50px;
+      @include transition(opacity 1s);
+
+      .e-title {
+        font-size: 28px;
+        line-height: 32px;
+      }
+      .e-author {
+        font-size: 18px;
+        line-height: 21px;
+      }
     }
   }
 }
@@ -273,6 +366,7 @@ svg {
   &.move-in {
     bottom: 110vh;
   }
+
 }
 
 .c-right-block {
@@ -282,12 +376,72 @@ svg {
   color: $white;
 
   .e-room {
-    font-size: 30px;
+    font-size: 20px;
+    font-weight: 200;
+    line-height: 25px;
   }
 
   .e-title {
-    font-size: 20px;
-    line-height: 25px;
+    font-size: 26px;
+    font-weight: bold;
+    line-height: 30px;
+    margin: 20px 0;
+  }
+}
+
+.c-events-navigation {
+  width: 40px;
+  position: absolute;
+  top: 50px;
+  right: 0;
+  display: none;
+
+  &.first {
+    .polygon-navigation {
+      &:nth-of-type(1) {
+        #Path-Copy-11 {
+          opacity: 1;
+        }
+      }
+    }
+  }
+  &.second {
+    .polygon-navigation {
+      &:nth-of-type(2) {
+        #Path-Copy-11 {
+          opacity: 1;
+        }
+      }
+    }
+  }
+  &.third {
+    .polygon-navigation {
+      &:nth-of-type(3) {
+        #Path-Copy-11 {
+          opacity: 1;
+        }
+      }
+    }
+  }
+  &.fourth {
+    .polygon-navigation {
+      &:nth-of-type(4) {
+        #Path-Copy-11 {
+          opacity: 1;
+        }
+      }
+    }
+  }
+}
+
+.polygon-navigation {
+  display: block;
+  width: 26px;
+
+  #Path-Copy-11 {
+    fill: $dark-pink;
+    opacity: .3;
+    @include transition(opacity 1s);
   }
 }
 
@@ -352,3 +506,51 @@ svg {
     display: inline-block !important;
   }
 }
+
+// container specific styles
+
+.middle-column-container {
+  &.v-message {
+    .c-page-title {
+      max-width: 25vw;
+      left: auto;
+      right: -160px;
+      bottom: 110px;
+
+      @include below($breakpoint) {
+        bottom: 75px;
+        right: -90px;
+      }
+    }
+  }
+  &.v-programme {
+  }
+  &.v-socialmedia {
+  }
+}
+
+.e-right-column {
+  .blocks-container {
+    &.v-programme {
+        .c-social-media-title {
+          display: none;
+        }
+      @include below($breakpoint) {
+        width: 280px;
+        height: 600px;
+
+        .c-events-navigation {
+          display: block;
+        }
+        .c-right-block {
+          display: none;
+        }
+      }
+
+      &.v-socialmedia {
+
+      }
+    }
+  }
+}
+
